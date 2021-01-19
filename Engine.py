@@ -34,7 +34,7 @@ def run():
             usr_action = usr_action.split()
             if len(usr_action) != 3:
                 print("Wrong number of inputs.\n")
-            elif usr_action[0] not in ["0", "1"]:
+            elif usr_action[0] not in ["f", "u"]:
                 print("Invalid action. Please choose either 0 or 1.\n")
             elif not usr_action[1].isdigit():
                 print("Row needs to be an integer\n")
