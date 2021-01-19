@@ -41,7 +41,7 @@ def run():
             elif not usr_action[2].isdigit():
                 print("Col needs to be an integer\n")
             else:
-                result = new_board.action(int(usr_action[0]), int(usr_action[1]), int(usr_action[2]))
+                result = new_board.action(usr_action[0], int(usr_action[1]), int(usr_action[2]))
                 if type(result) == int:
                     valid_input = True
                 else:
