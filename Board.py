@@ -154,8 +154,8 @@ class Board:
     def action(self, action, row, col):
         """
         action taken by user
-        0 = flag
-        1 = uncover
+        f = flag
+        u = uncover
         return "Error Message" if illegal move
         return -1 if uncovered mine
         return 0 if action completed
@@ -165,7 +165,7 @@ class Board:
         if not (r >= 0 and r < self.height and c >= 0 and c < self.width):
             return "Invalid cell.\n"
         cell = self.cells[r][c]
-        if action == 0:
+        if action == "f":
             if cell.is_uncovered():
                 return "Cannot flag uncovered cell.\n"
             elif cell.get_display() == " ":
@@ -177,7 +177,7 @@ class Board:
             else:
                 return "Unknown error in action.\n"
             return 0
-        elif action == 1:
+        elif action == "u":
             if cell.is_uncovered():
                 return "Cell already uncovered.\n"
             elif cell.is_mine():
@@ -188,7 +188,7 @@ class Board:
                 self.check_cell(cell)
                 return 0
         else:
-            return "Invalid action. Please choose either 0 or 1.\n"
+            return "Invalid action. Please choose either f or u.\n"
 
     def check_cell(self, cell):
         row = cell.get_row()

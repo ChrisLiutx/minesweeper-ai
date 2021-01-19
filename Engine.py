@@ -72,8 +72,8 @@ def get_action():
 =====================================================================
     Choose an action:
     [action] [row] [col]
-    actions: 0 to flag, 1 to uncover
-    eg: 0 2 3
+    actions: f to flag, u to uncover
+    eg: f 2 3
     this means I want to flag cell at row 2 column 3
 =====================================================================
     """)
