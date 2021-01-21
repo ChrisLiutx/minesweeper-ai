@@ -39,7 +39,13 @@ class Board:
             for col in range(self.width):
                 r.append(Cell.Cell(row, col))
             self.cells.append(r)
-        for rand in random.sample(range(self.size), self.num_mines):
+
+    def generate_mines(self, start_r, start_c):
+
+        starting = start_r * self.width + start_c
+        choices = list(range(self.size))
+        choices.remove(starting)
+        for rand in random.sample(choices, self.num_mines):
             self.cells[rand//self.width][rand%self.width].set_mine()
 
 
@@ -160,11 +166,8 @@ class Board:
         return -1 if uncovered mine
         return 0 if action completed
         """
-        r = row - 1
-        c = col - 1
-        if not (r >= 0 and r < self.height and c >= 0 and c < self.width):
-            return "Invalid cell.\n"
-        cell = self.cells[r][c]
+
+        cell = self.cells[row-1][col-1]
         if action == "f":
             if cell.is_uncovered():
                 return "Cannot flag uncovered cell.\n"
@@ -241,3 +244,6 @@ class Board:
 
     def is_end(self):
         return self.end
+
+    def get_dimensions(self):
+        return self.height, self.width
