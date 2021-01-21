@@ -5,6 +5,8 @@ Minesweeper game created by Chris Liu @ 2021
 """
 import Board
 import Cell
+import AI
+import time
 
 def run():
     print("Welcome to Chris's Minesweeper! Type exit at any time to end game.\n")
@@ -22,6 +24,7 @@ def run():
     inp = int(inp)
     new_board = Board.Board(inp)
     new_board.print_board()
+    new_ai = AI.Bot(*new_board.get_dimensions())
     start_a, start_r, start_c = get_action(new_board)
     new_board.generate_mines(start_r-1, start_c-1)
     new_board.set_values()
@@ -35,7 +38,11 @@ def run():
 
         valid_input = False
         while not valid_input:
-            act = get_action(new_board)
+            ai_act = new_ai.get_action(new_board)
+            if ai_act:
+                act = ai_act
+            else:
+                act = get_action(new_board)
             result = new_board.action(*act)
             if type(result) == int:
                 valid_input = True
@@ -46,6 +53,7 @@ def run():
             lose(new_board)
         elif int(result) == 0:
             new_board.print_board()
+#            time.sleep(1)
             #new_board.print_board_debug()
         else:
             print("ERROR!")
@@ -135,16 +143,18 @@ if __name__ == "__main__":
     print("Starting Minesweeper...\n")
     done = False
     while not done:
-        try:
-            run()
-            inp = input("Start a new game?(y/n): \n")
-            if inp == "n":
-                done = True
+#        try:
+        run()
+        inp = input("Start a new game?(y/n): \n")
+        if inp == "n":
+            done = True
+        """
         except Exception as e:
             print("Weird error, please contact mail@chrisliu.io: \n")
             print(e)
             inp=input("")
             break
+        """
 
     quit()
 else:

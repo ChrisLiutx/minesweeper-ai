@@ -48,6 +48,16 @@ class Board:
         for rand in random.sample(choices, self.num_mines):
             self.cells[rand//self.width][rand%self.width].set_mine()
 
+    def get_displays(self):
+        lst = []
+        for i in range(self.height):
+            temp_r = []
+            for j  in range(self.width):
+                temp_r.append(self.cells[i][j].get_display())
+            lst.append(temp_r)
+        return lst
+
+
 
     def print_board(self):
         print("\t=============")
@@ -240,6 +250,11 @@ class Board:
                     cell.set_display("M")
                 else:
                     cell.set_display(str(cell.get_value()))
+        print("""
+        ========
+         REVEAL
+        ========
+        """)
         self.print_board()
 
     def is_end(self):
