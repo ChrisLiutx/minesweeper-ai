@@ -1,5 +1,7 @@
 Minesweeper game and AI created by Chris Liu 2021
 
+Demo: https://youtu.be/BD6RgtYZOZg
+
 Completely coded from scratch by me as a personal project. ALL the code below are mine. I did read up and do some research, which I'll credit below. Actual coding time around 2 days?
 For windows users, execute run.bat which automatically checks for presence of Python installation.
 
